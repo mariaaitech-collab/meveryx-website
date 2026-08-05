@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens are defined in ../../tailwind.config.ts and loaded below.
+ * This is a modern light theme: off-white background, high-contrast slate
+ * text, and soft pastel tints derived from the Meveryx logo palette.
+ */
+@config "../../tailwind.config.ts";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #fafafa;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 400;
+  background-color: #fafafa;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: rgb(0 168 232 / 0.2);
+  color: #0f172a;
+}
+
+/* ------------------------- Logo-gradient utilities ------------------------ */
+
+/* Primary button / icon tile background: cyan → indigo → magenta */
+.bg-logo-gradient {
+  background-image: linear-gradient(135deg, #00a8e8 0%, #2b3b95 55%, #9e1b9b 130%);
+}
+
+/* Soft pastel tint used for icon chips on cards */
+.bg-logo-soft {
+  background-image: linear-gradient(
+    135deg,
+    rgb(224 242 254 / 0.9),
+    rgb(243 232 255 / 0.9)
+  );
+}
+
+/* Headline text: cyan → indigo → magenta → lime */
+.text-logo-gradient {
+  background-image: linear-gradient(92deg, #00a8e8 0%, #2b3b95 34%, #9e1b9b 62%, #84cc16 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Nav link underline: animated 4-color gradient bar (Cyan → Indigo → Magenta → Lime) */
+.nav-underline {
+  background-image: linear-gradient(90deg, #00a8e8 0%, #2b3b95 33%, #9e1b9b 66%, #8dc63f 100%);
+}
+
+/* Cyan glow used on hover for primary actions */
+.glow-cyan {
+  box-shadow:
+    0 0 0 1px rgb(0 168 232 / 0.18),
+    0 8px 32px -8px rgb(0 168 232 / 0.4);
+}
+
+/* Magenta glow for secondary accents */
+.glow-magenta {
+  box-shadow:
+    0 0 0 1px rgb(158 27 155 / 0.22),
+    0 10px 34px -8px rgb(158 27 155 / 0.4);
+}
+
+/* Gradient border card — border fades in on hover.
+   Pure CSS (mask technique) so it works on any background. */
+.gradient-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.gradient-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #00a8e8, #2b3b95, #9e1b9b, #84cc16);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gradient-card:hover::before {
+  opacity: 1;
+}
+
+/* --------------------- Ambient background orb keyframes ------------------- */
+
+@keyframes orb-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4rem, -3rem, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-3rem, 2rem, 0) scale(0.96);
+  }
+}
+
+@keyframes orb-float-alt {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-5rem, 3rem, 0) scale(0.94);
+  }
+  100% {
+    transform: translate3d(3rem, -2rem, 0) scale(1.14);
+  }
+}
+
+.animate-orb {
+  animation: orb-float 22s ease-in-out infinite alternate;
+}
+
+.animate-orb-alt {
+  animation: orb-float-alt 26s ease-in-out infinite alternate;
+}
+
+/* ---------------------- Bottom wave animations ---------------------- */
+
+@keyframes wave-drift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-5%);
+  }
+}
+
+@keyframes wave-drift-alt {
+  0% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-wave-slow {
+  animation: wave-drift 18s ease-in-out infinite alternate;
+}
+
+.animate-wave-slower {
+  animation: wave-drift-alt 26s ease-in-out infinite alternate;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-orb,
+  .animate-orb-alt,
+  .animate-wave-slow,
+  .animate-wave-slower {
+    animation: none;
+  }
+}
