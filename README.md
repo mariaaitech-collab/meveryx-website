@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meveryx Website
+> The company website for Meveryx, a software and digital-marketing studio in Pakistan.
+
+![language](https://img.shields.io/badge/language-TypeScript-4338CA?style=flat-square&logo=typescript&logoColor=white) ![framework](https://img.shields.io/badge/framework-Next.js_16-4338CA?style=flat-square&logo=nextdotjs&logoColor=white) ![license](https://img.shields.io/badge/license-MIT-6366F1?style=flat-square) ![status](https://img.shields.io/badge/status-live-818CF8?style=flat-square)
+
+## Overview
+This is the public website for Meveryx. It explains the studio's services, shows pricing, and turns visitors into leads through a contact form and a consultation-booking form. It was built to rank in search, so every page ships with proper metadata, a sitemap and structured data.
+
+**Live:** https://meveryx-frontend.vercel.app
+
+## Features
+- 12 service pages from one template: web, mobile, UI/UX, SEO, Google & Meta Ads, AI automation and more
+- Consultation booking form with date, time, timezone and meeting preference, validated with Zod
+- Contact form that sends email through Resend, Web3Forms or Formspree, whichever is configured
+- Pricing, About (team and values), FAQ, Privacy and Terms pages
+- Built-in SEO: sitemap, robots.txt, web manifest and schema.org structured data
+- Floating WhatsApp button and animated sections (Framer Motion)
+
+## Tech Stack
+| Layer | Technology | Version |
+|---|---|---|
+| Framework | Next.js (App Router) | 16.2 |
+| UI | React | 19.2 |
+| Language | TypeScript | 5 |
+| Styling | Tailwind CSS | 4 |
+| Animation | Framer Motion | 12.43 |
+| Validation | Zod | 4.4 |
+| Icons | lucide-react | 1.28 |
+| Utilities | clsx + tailwind-merge | 2.1 / 3.6 |
+
+## Screenshots
+<!-- Maria: add screenshots here -->
 
 ## Getting Started
-
-First, run the development server:
+**Prerequisites:** Node.js 20+
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/mariaaitech-collab/meveryx-website.git
+cd meveryx-website
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To make the forms deliver email, set one of these in `.env.local`: `RESEND_API_KEY` (with `RESEND_FROM` and `RESEND_TO`), `WEB3FORMS_ACCESS_KEY`, or `FORMSPREE_ID`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Production build: `npm run build && npm start`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Status
+**Complete and live** at https://meveryx-frontend.vercel.app.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built by Maria Shafqat · [Linktree](https://linktr.ee/mariashafqat_)
